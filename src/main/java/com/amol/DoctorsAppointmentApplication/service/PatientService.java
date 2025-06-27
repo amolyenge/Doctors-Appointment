@@ -14,7 +14,7 @@ import com.amol.DoctorsAppointmentApplication.model.Doctor;
 import com.amol.DoctorsAppointmentApplication.model.Patient;
 import com.amol.DoctorsAppointmentApplication.repository.IPatientRepo;
 
-//import javax.xml.bind.DatatypeConverter;
+import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -35,7 +35,7 @@ public class PatientService {
     AppointmentService appointmentService;
     public SignUpOutput signUp(SignUpInput signUpDto) {
 
-        //check if user exists or not based on email
+        
         Patient patient = patientRepo.findFirstByPatientEmail(signUpDto.getUserEmail());
 
         if(patient != null)
@@ -43,7 +43,7 @@ public class PatientService {
             throw new IllegalStateException("Patient already exists!!!!...sign in instead");
         }
 
-//      encryption
+
         String encryptedPassword = null;
 
         try {
@@ -67,7 +67,7 @@ public class PatientService {
         md5.update(userPassword.getBytes());
         byte[] digested = md5.digest();
 
-//        String hash = DatatypeConverter.printHexBinary(digested);
+        String hash = DatatypeConverter.printHexBinary(digested);
         String hash = DatatypeConverter.printHexBinary(digested);
 
         return hash;
@@ -75,7 +75,7 @@ public class PatientService {
     }
 
     public SignInOutput signIn(SignInInput signInDto) {
-        //check if user exists or not based on email
+       
         Patient patient = patientRepo.findFirstByPatientEmail(signInDto.getPatientEmail());
 
         if(patient == null)
@@ -93,7 +93,7 @@ public class PatientService {
 
         }
 
-        //match it with database encrypted password
+       
 
         boolean isPasswordValid = encryptedPassword.equals(patient.getPatientPassword());
 
@@ -106,7 +106,7 @@ public class PatientService {
 
         tokenService.saveToken(token);
 
-        //set up output response
+     
 
         return new SignInOutput("Authentication Successfull !!!", token.getToken());
 
