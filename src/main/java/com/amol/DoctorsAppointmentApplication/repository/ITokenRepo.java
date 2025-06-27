@@ -8,7 +8,7 @@ import com.amol.DoctorsAppointmentApplication.model.AuthenticationToken;
 public interface ITokenRepo extends JpaRepository<AuthenticationToken, Long> {
 
 
-//    AuthenticationToken findByPatient(Patient patient);
+    AuthenticationToken findByPatient(Patient patient);
 
     AuthenticationToken findFirstByToken(String token);
 }
