@@ -40,7 +40,7 @@ public class PatientController {
         HttpStatus status;
         List<Doctor> allDoctors = null;
 
-        //authenticate
+        
 
         if(authService.authenticate(userEmail,token))
         {
