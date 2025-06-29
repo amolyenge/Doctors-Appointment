@@ -33,7 +33,7 @@ public class DoctorController {
         try
         {
             myAppointments = docService.getMyAppointments(docId);
-            //System.out.println(myAppointments);
+           
             if(myAppointments.isEmpty())
             {
                 status = HttpStatus.NO_CONTENT;
