@@ -13,7 +13,7 @@ import java.util.Optional;
 public class AppointmentService {
 
     @Autowired
-    IAppointmentRepo appointmentRepo;
+  //  IAppointmentRepo appointmentRepo;
     public void bookAppointment(Appointment appointment) {
 
         Optional<Appointment> myAppointment = appointmentRepo.findById(appointment.getId());
